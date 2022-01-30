@@ -1,16 +1,17 @@
-<h1>Editing Book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>errors prohibited this obj from being saved.
-  <% @book.errors.full_messages.each do |message| %>
+<h1>User info</h1>
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>errors prohibited this obj from being saved.
+  <% @user.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
 <% end %>
 <%= form_with model:@book, local: true do |f| %>
-<h4>Title</h4>
-<%= f.text_field :title %>
-<h4>Opinion</h4>
+<h4>Name</h4>
+<%= f.text_field :name %>
+<h4>Image</h4>
+<h4>Introduction</h4>
 <%= f.text_area :body %>
-<%= f.submit 'Update Book' %>
+<%= f.submit 'Update User' %>
 
 <%= link_to "Show", book_path(@book) %>
 <%= link_to "Back", books_path %>
