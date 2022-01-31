@@ -1,19 +1,12 @@
 <h1>User info</h1>
-<% if @user.errors.any? %>
-  <%= @user.errors.count %>errors prohibited this obj from being saved.
-  <% @user.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
-<%= form_with model:@book, local: true do |f| %>
-<h4>Name</h4>
-<%= f.text_field :name %>
-<h4>Image</h4>
-<h4>Introduction</h4>
-<%= f.text_area :body %>
-<%= f.submit 'Update User' %>
-
-<%= link_to "Show", book_path(@book) %>
-<%= link_to "Back", books_path %>
-
+<h2>Name</h2>
+<%= form_with model:@user, local:true do |f| %>
+  <label for="inputName">Name</label>
+  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+  <label for="inputImage">Image</label>
+  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+  <label for="inputIntroduction">Introduction</label>
+  <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"イントロダクション"%>
+    <%= f.submit "Update User" %>
 <% end %>

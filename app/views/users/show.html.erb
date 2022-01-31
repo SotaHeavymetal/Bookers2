@@ -1,12 +1,31 @@
 <h4>User info</h4>
-<div class="profile-container w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle"; %>
-  <h5 class="profile-name display-4"><%= @user.name %></h5>
-  <h5 class="profile-name display-4"><%= @user.introduction %></h5>
-  <!--% if @user.id == current_user.id %-->
-    <div class="mt-auto">
-    <p><%= link_to "プロフィール編集", edit_user_path(@user), class:"text-dark" %></p>
-    </div>
+
+  <% @books.each do |book| %>
+<div>
+  <%= link_to book_path(book.id) do %>
+    <%= attachment_image_tag book, :image %>
   <% end %>
+  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
+  <p>ショップ名：<%= post_image.shop_name %></p>
+  <p>説明：<%= post_image.caption %></p>
+  <p>ユーザーネーム：<%= post_image.user.name %></p>
 </div>
-<!--%= render 'post_images/list', post_images: @post_images %-->
+<% end %>
+<%= paginate @books %>
+
+<h2>New book</h2>
+ <% if @book.errors.any? %>
+   <%= @book.errors.count %>errors prohibited this obj from being saved:
+   <% @book.errors.full_messages.each do |message| %>
+     <%= message %>
+   <% end %>
+<%= form_with model:@book, local:true do |f| %>
+<h4>Title</h4>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_area :body %>
+
+<%= f.submit 'Create Book' %>
+
+<% end %>
+<% end %>
