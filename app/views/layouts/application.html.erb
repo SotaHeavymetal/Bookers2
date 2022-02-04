@@ -19,13 +19,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              <nav class = "nav navbar-left"
+              
+            <% if user_signed_in? %>
+            <nav class = "nav navbar-left"
               <span><%= link_to "Bookers", root_path, class: 'nav-link text-dark' %></span>
               </nav>
-            <% if user_signed_in? %>
-            <li>
-              <%= link_to "Bookers", root_path, class: 'nav-link text-dark' %>
-            </li>
+          
             <li class="nav-item">
               <%= link_to "Home", root_path, class: 'nav-link text-dark' %>
             </li>
@@ -40,9 +39,9 @@
             </li>
   
             <% else %>
-             <li>
-              <%= link_to "Bookers", root_path, class: 'nav-link text-dark' %>
-            </li>
+            <nav class = "nav navbar-left"
+              <span><%= link_to "Bookers", root_path, class: 'nav-link text-dark' %></span>
+              </nav>
              <li class="nav-item">
               <%= link_to "Home", root_path, class: 'nav-link text-dark' %>
             </li>
@@ -65,7 +64,14 @@
     <%= yield %>
     </main>
     <footer>
-      <p text = "text-right">CopyRight Infratop.inc</p>
+      <div class="container mt-5">
+        <div class = "row">
+          <div class = "mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
