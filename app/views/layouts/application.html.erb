@@ -21,12 +21,12 @@
             <ul class="navbar-nav ml-auto">
               
             <% if user_signed_in? %>
-            <nav class = "nav navbar-left"
+            <nav class = "nav navbar-left">
               <span><%= link_to "Bookers", root_path, class: 'nav-link text-dark' %></span>
               </nav>
           
             <li class="nav-item">
-              <%= link_to "Home", root_path, class: 'nav-link text-dark' %>
+              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
               <%= link_to "Users", users_path, class: 'nav-link text-dark' %>
@@ -39,7 +39,7 @@
             </li>
   
             <% else %>
-            <nav class = "nav navbar-left"
+            <nav class = "nav navbar-left">
               <span><%= link_to "Bookers", root_path, class: 'nav-link text-dark' %></span>
               </nav>
              <li class="nav-item">
