@@ -1,19 +1,20 @@
 class UsersController < ApplicationController
-  
+
   def index
    @user = current_user
    @users = User.all
    @book = Book.new
   end
-  
+
   def show
     @user = User.find(params[:id])
-    @book = Book.find(params[:id])
+    @book = Book.new
     @books = @user.books.page(params[:page]).reverse_order
   end
 
   def edit
     @user = User.find(params[:id])
+    flash[:notice] = "You have updated user successfully."
   end
 
   def update
@@ -22,8 +23,9 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
     else
+      flash[:notice] = "is too short (minimum is 2 characters)"
       render :edit
-      
+
     end
   end
 
