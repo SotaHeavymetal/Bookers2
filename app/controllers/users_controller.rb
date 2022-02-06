@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :correct_user, only: [:edit, :update]
 
   def index
    @user = current_user
@@ -14,7 +15,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    flash[:notice] = "You have updated user successfully."
   end
 
   def update
@@ -33,5 +33,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user.id) unless @user == current_user
   end
 end
